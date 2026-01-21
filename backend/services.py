@@ -9,7 +9,7 @@ def search_item(word):
     resp_json = {
         "status": "failed"
     }
-    word_meaning = meili_client.index("dictionary").search(word,{"limit": 2})
+    word_meaning = meili_client.index("dictionary").search(word, {"limit": 2})
     if "hits" in word_meaning and word_meaning["hits"]:
         first_word = word_meaning["hits"][0]
         resp_json = first_word
@@ -21,7 +21,7 @@ def search_item(word):
 def continuous_search(word):
     resp = list()
 
-    words = meili_client.index("dictionary").search(word,{
+    words = meili_client.index("dictionary").search(word, {
         "limit": 5,
         "sort": ["word:asc"]
     })
@@ -31,4 +31,3 @@ def continuous_search(word):
         if word.lower() in current_word.lower():
             resp.append(current_word)
     return resp
-    
